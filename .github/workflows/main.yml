@@ -1,0 +1,21 @@
+name: test
+on:
+  push:
+    branches: ["main"]
+  pull_request: 
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v3
+      - name: Run echo
+        run: |
+          echo "hostname is $(hostname)"
+          echo installing the packages
+      - name: install packages
+        run: make install
+      - name: lint
+        run: make lint
+      
